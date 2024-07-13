@@ -1,0 +1,29 @@
+INSTALL
+Version:
+	-Pokerface v2024.06.10
+	© 2004 - 2024 PretendGINEERS. All Rights Reserved.
+Authors:
+	-Mharlo Borromeo, Jack Lu, Calvin Nguyen, Mervin Nguyen, Peter Nguyen, Derek Tang
+Last modified:
+	-10 June 2024
+
+Installation (basic user, no building or compiling necessary, v2024.06.10)
+
+1. Download Poker_V1.0.tar.gz compressed folder. 
+2. Navigate to the directory where the Poker_V1.0.tar.gz folder is located after downloading(for example, 'cd Downloads'), and then run command (in terminal) ‘gtar xvzf Poker_V1.0.tar.gz’ in order to unpack/unzip the file. 
+3. Navigate within the newly unzipped folder in the terminal ('cd poker'), and then navigate to the ‘bin’ folder ('cd bin'). 
+4. Run the server executable first, using command './pokerserver 10080', and then run the client on another terminal window using command './pokerclient crystalcove 10080'. (Alternatively, run the executable straight from the main directory using command './src/pokerserver 10080' and './src/pokerclient crystalcove 10080'). 
+
+Advanced Installation (advanced user, requires different folders in order to build and compile properly). 
+
+1. Download Poker_V1.0_src.tar.gz compressed folder. 
+2. Navigate to the directory where the Poker_V1.0_src.tar.gz folder is located after downloading(for example, 'cd Downloads'), and then run command (in terminal) ‘gtar xvzf Poker_V1.0_src.tar.gz’. 
+3. Navigate within the newly unzipped folder in the terminal ('cd poker'), and then run the command ‘make all’ in order to build and compile the poker executables within the ‘bin’ folder. 
+4. Optionally, utilize commands ‘make clean’ in order to remove all object files and executable files created by the ‘make/make all’ command. 
+5. Optionally, command ‘make test’ can also be used to create test executables in order to check all various functionality of the poker program, such as the GUI, client/server functionality, and game logic and rules (navigate to 'bin' folder, use './test_(section)' to run executables). 
+6. Optionally, use command ‘make gtar’ in order to create a tar of the source code package (compress the source code package) that will execute the macros ‘gtar cvzf Poker_V1.0_src.tar.gz’ and 'gtar czvf Poker_V1.0.tar.gz' along with all bundled files. 
+7. Navigate within the ‘bin’ folder and then run the executable by first running the server executable with the command './pokerserver 10080', and then run the client executable on another terminal/SSH login session with './pokerclient crystalcove 10080'.
+
+Uninstallation (for both basic and advanced users)
+
+1. Navigate to the folder where Poker_V1.0.tar.gz or Poker_V1.0_src.tar.gz was uncompressed within terminal ('cd Downloads', then 'cd poker'), taking extra care that there are no other contents in the folder besides the files that were unzipped from the Poker_V1.0.tar.gz file or Poker_V1.0_src.tar.gz, then use 'rm -rf *' to remove all files within the downloaded and unzipped folder without needing to authorize the deletion of each file at a time. 

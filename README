@@ -1,0 +1,113 @@
+README
+Version:
+	-Pokerface v2024.06.10
+	© 2004 - 2024 PretendGINEERS. All Rights Reserved.
+Authors:
+	-Mharlo Borromeo, Jack Lu, Calvin Nguyen, Mervin Nguyen, Peter Nguyen, Derek Tang
+Last modified:
+	-10 June 2024
+
+General Instructions:
+	- Please follow the instructions stated in the INSTALL file for detailed instructions on how to install (downloading .tar files, unpack/extract using gtar) and run the program.
+	- To run the program navigate to the "bin/" directory and run the main executatables on different servers/accounts.
+	- In order to start connect the client to the server's port then connect the server to the port the client is connected to.
+	Ex:
+		- Step #1: Run "./pokerserver [port number]" on an SSH client, taking care to use ports 10080-10089.
+		- Step #2: On a difference instance of an SSH client or in a separate SSH client, run "./pokerclient [hostname] [port number]" to connect to the running server, taking care to use ports 10080-10089. 
+	- After executing ./pokerclient use the ASCII interface to send messages to the server.
+
+V1.0 Version Notes:
+	- In the GUI the player actions are represented through by integers. (0-No Action, 1-Folded, 2-Called, 3-Raised, and 4-ALL IN)
+	- (IMPORTANT) Due to horrible time management of the project of the own accord of team members, the final GUI Multiclient Poker was not completed on time. Due to this, the final package will not have a functioning GUI poker game with multiclient support. The gamelogic, client/server, and GUI team have all completed their necessary portions of the code, and we have not been able to join them together. In order to test each portion separately, in bin, please run all unit tests separately. For graders viewing this, please be generous if possible, I (Peter Nguyen) have truly understood how we messed up in time management. 
+	- (IMPORTANT) Additionally, there are two 'poker' directories to be used: the main poker directory navigable to after unpacking the .tar.gz file can be used to test GUI and poker gamelogic; the poker_alternate direcotry inside the src/ folder can be used to effectively test MULTICLIENT functionality, with no GUI working. 
+	- GUI does work seperately in with updated based on an agreed upon string format and outputs a string based on user inputs.
+
+
+BONUS POINTS: Bonus points will be awarded in the following categories:
+• +5 points: better-than-basic login options
+	Username and password is entered on the GUI
+	Password is hidden after keys are entered
+	Dropdown menu for seat selection
+• +10 points: better-than-basic graphics and style
+	Mimicked a Poker table for the game
+	Professional looking backgrounds, cards, and dealer chip
+• +5 points: timer available on GUI
+	N/A
+• +5 points: scoreboard at the end of the game
+	Points for each player is displayed throughout the game
+• +10 points: other Poker variants
+	N/A
+• +5 points: different computer levels
+	N/A
+• +10 points: other fun options:
+	The background images aren't created using GTK Widgets instead they are directly changed by changing the style of a GTK EventBox
+
+String Format between Server/Client:
+	Client to Server:
+	Notation: Username: username; Password: password; Seat: (1-4); Fold: (boolean); Call: (boolean); Raise: (int); All In (boolean);
+	Example: Username: Test; Password: Test; Seat: 1; Fold: 0; Call: 0; Raise: 100; All In; 0
+	Server to Client:
+	Note Action: we can decide later be we can have 0-No Action, 1- Fold, 2- Call, ...
+	Notation: 
+	Dealer Cards: card1, card2, card3, card4, card5;
+	Player#1: Name, (int) Points, (int) Current_Bet [number of points they're currently betting], (boolean) Is In Game [1- in game/can do an action like call, 0 - they've alrealy folded], (int) Action [Ex. Call], (boolean) Turn [1-is player's turn, 0- is not player's turn], (boolean) Dealer Chip [1- the current player has the dealer button, 0-...], card1,  card 2; ... (the other three players)
+	Side Pot: (int) total side pot
+	Dealer: Message from dealer/server;
+	Example: Dealer Cards: king_of_diamonds, ace_of_spades, back_of_card, back_of_card, back_of_card; Player#1: Alex, 800, 200, 1, 1, 0, 1, back_of_card, back_of_card; Player#2: Bob, 1000, 0, 0, 0, 0, 0, back_of_card, back_of_card; Player#3: Max, 1000, 0, 0, 0, 0, 0, back_of_card, back_of_card; Player#4: Cry, 900, 100, 1, 2, 1, 0, back_of_card, back_of_card; Side Pot: 300; Dealer: Here comes the turn!;
+
+README For USERS:
+[For more details see Chess_UserManual.pdf located in the "doc/" directory]
+Poker_Beta.tar.gz Contents:
+bin/						- Directory which stores copies of all the executables
+	pokerserver				- Main poker executable for the server
+	pokerclient				- Main poker executable for the client
+doc/						- Directory with the user documentation
+	Poker_UserManual.pdf	- Detailed user manual for the user
+INSTALL						- Installation directions
+COPYRIGHT					- Licensing by PretendGINEERS Studios & PretendGINEERS Software Inc.
+README						- README for Pokerface
+
+README FOR PROGRAMERS:
+[For more details see Chess_SoftwareSpec.pdf located in the "doc/" directory]
+Top-Level Make Commands:
+	- make all - create the main executables and places them in the bin/ directory
+	- make test - create the test executables and places them in the bin/ directory
+	- make test-gui - creates the unit test for the GUI and runs it (Requires XMing)
+	- make test-gamelogic - tests gamelogic
+	- make test-comm - tests communication
+	- make test-client - tests client
+	- make test-clieservernt - tests server
+	- make clean - Cleans up excess files
+	- make tar - generates the .tar.gz files for the user/programer 
+
+Poker_Beta_src.tar.gz Contents:
+bin/							- Directory which stores copies of all the executables
+	pokerserver					- Main poker executable for the server
+	pokerclient					- Main poker executable for the client
+doc/							- Directory with the user and software documentation
+	Poker_SoftwareSpec.pdf		- Detailed software specifications for the programmer
+	Poker_UserManual.pdf		- Detailed user manual for the user
+scr/							- Directory which contains all the c files along with a Makefile
+	gui_images/					- Directory which contains images needed by the GUI
+	client.c					- Functions for the client
+	client.h					- client.c header file
+	constants.h					- File with all the macros
+	gamelogic.c					- Functions for the gamelogic
+	gamelogic.h					- gamelogic.c header file
+	gui.c						- Functions for the gui
+	gui.h						- gui.c header file
+	Makefile					- Makefile to create the executables
+	pokerclient.c				- Main executable for the client
+	pokerserver.c				- Main executable for the server
+	server.c					- Functions for the server
+	server.h					- server.c header file
+	structures.h				- File which contains structure definitions
+	unit_test_client.c			- Unit test for the client
+	unit_test_gamelogic.c		- Unit test for the gamelogic
+	unit_test_gui.c				- Unit test for the gui
+	unit_test_server.c			- Unit test for the server
+INSTALL.TXT						- Installation directions
+LICENSE.TXT						- Licensing by PretendGINEERS Studios & PretendGINEERS Software Inc.
+Makefile						- Top level Makefile
+README							- README for Pokerface
+
